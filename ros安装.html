@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Ubuntu ISO 下载及ROS安装步骤</title>
+</head>
+<body>
+    <h1>Ubuntu ISO下载及ROS安装步骤</h1>
+    <p>Ubuntu ISO文件的下载网站：<a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/20.04/" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/20.04/</a></p>
+    <br>
+    
+    <p>需要下载的镜像的地址是：<a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/focal/ubuntu-20.04.6-desktop-amd64.iso" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/focal/ubuntu-20.04.6-desktop-amd64.iso</a></p>
+    <br>
+    <p>来源CSDN（如果内容有误/更加详细请到CSDN了解）：<a href="https://blog.csdn.net/qq_46106285/article/details/120982412" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/20.04/</a>。</p>
+    <br>
+    <h2>安装步骤：</h2>
+    <br>
+    <h3>
+        <li><code>sudo sh -c 'echo "deb http://mirrors.aliyun.com/ubuntu/ focal main multiverse restricted universe
+        deb http://mirrors.aliyun.com/ubuntu/ focal-backports main multiverse restricted universe
+        deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main multiverse restricted universe
+        deb http://mirrors.aliyun.com/ubuntu/ focal-security main multiverse restricted universe
+        deb http://mirrors.aliyun.com/ubuntu/ focal-updates main multiverse restricted universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ focal main multiverse restricted universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main multiverse restricted universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main multiverse restricted universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main multiverse restricted universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main multiverse restricted universe" > /etc/apt/sources.list'</code></li><br>
+        <li><code>sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ focal main" > /etc/apt/sources.list.d/ros-latest.list'</code></li><br>
+        <li><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654</code></li><br>
+        <li><code>sudo apt update</code></li><br>
+        <li><code>sudo apt install ros-noetic-desktop-full -y</code></li><br>
+        <li><code>echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc</code></li><br>
+        <li><code>source ~/.bashrc</code></li><br>
+        <li><code>sudo apt install python3-rosinstall python3-rosinstall-generator python3-wstool -y</code></li><br>
+        <li><code>sudo apt install python3-roslaunch -y</code></li><br>
+        <li><code>roscore</code></li><br>
+        <li><code>rosrun turtlesim turtlesim_node</code></li><br>
+        <li><code>rosrun turtlesim turtle_teleop_key</code></li>
+    </h3>
+</body>
+</html>

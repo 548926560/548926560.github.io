@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>渲染时钟</title>
+  <style>
+    *{border:0;box-sizing:border-box;margin:0;padding:0}:root{--hue:223;--bg:hsl(var(--hue),90%,90%);--fg:hsl(var(--hue),90%,10%);--trans-dur:0.3s;font-size:calc(16px + (24 - 16) * (100vw - 320px) / (2560 - 320))}body{background-color:var(--bg);color:var(--fg);display:flex;font:1em/1.5 Comfortaa,sans-serif;height:100vh;transition:background-color var(--trans-dur),color var(--trans-dur)}.clock{--hrAngle:0;--minAngle:0;--secAngle:0;--hrOffset:0;--minOffset:0;--secOffset:0;display:block;margin:auto;width:16em;height:16em}.clock__hand{transform-origin:64px 64px}.clock__hand--h{transform:rotate(var(--hrAngle))}.clock__hand--m{transform:rotate(var(--minAngle))}.clock__hand--s{stroke:hsl(var(--hue),90%,50%);transform:rotate(var(--secAngle))}.clock__hand-hub{fill:hsl(var(--hue),90%,50%)}.clock__slice--h{stroke-dashoffset:var(--hrOffset)}.clock__slice--m{stroke-dashoffset:var(--minOffset)}.clock__slice--s{stroke-dashoffset:var(--secOffset)}@media (prefers-color-scheme:dark){:root{--bg:hsl(var(--hue),90%,10%);--fg:hsl(var(--hue),90%,90%)}}
+  </style>
+</head>
+
+<body>
+  <svg class="clock" viewBox="0 0 128 128" role="img">
+    <g fill="none" stroke-width="64" transform="rotate(-90,64,64)">
+      <circle class="clock__slice" r="32" cx="64" cy="64" stroke="hsl(var(--hue),90%,95%)" />
+      <circle class="clock__slice clock__slice--s" r="32" cx="64" cy="64" stroke="hsla(var(--hue),90%,50%,0.3)"
+        stroke-dasharray="201.06 201.06" />
+      <circle class="clock__slice clock__slice--m" r="32" cx="64" cy="64" stroke="hsla(var(--hue),90%,50%,0.3)"
+        stroke-dasharray="201.06 201.06" />
+      <circle class="clock__slice clock__slice--h" r="32" cx="64" cy="64" stroke="hsla(var(--hue),90%,50%,0.3)"
+        stroke-dasharray="201.06 201.06" />
+    </g>
+    <g fill="hsl(var(--hue),90%,10%)" font-size="12" transform="translate(0,4)">
+      <text text-anchor="middle" x="64" y="64" transform="rotate(30,64,64) translate(0,-46) rotate(-30,64,64)">1</text>
+      <text text-anchor="middle" x="64" y="64" transform="rotate(60,64,64) translate(0,-46) rotate(-60,64,64)">2</text>
+      <text text-anchor="middle" x="64" y="64" transform="rotate(90,64,64) translate(0,-46) rotate(-90,64,64)">3</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(120,64,64) translate(0,-46) rotate(-120,64,64)">4</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(150,64,64) translate(0,-46) rotate(-150,64,64)">5</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(180,64,64) translate(0,-46) rotate(-180,64,64)">6</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(210,64,64) translate(0,-46) rotate(-210,64,64)">7</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(240,64,64) translate(0,-46) rotate(-240,64,64)">8</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(270,64,64) translate(0,-46) rotate(-270,64,64)">9</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(300,64,64) translate(0,-46) rotate(-300,64,64)">10</text>
+      <text text-anchor="middle" x="64" y="64"
+        transform="rotate(330,64,64) translate(0,-46) rotate(-330,64,64)">11</text>
+      <text text-anchor="middle" x="64" y="64" transform="rotate(0,64,64) translate(0,-46)">12</text>
+    </g>
+    <g fill="none" stroke="hsl(var(--hue),90%,10%)" stroke-linecap="round" stroke-width="1">
+      <polyline points="64 4,64 8" />
+      <polyline points="64 4,64 6" transform="rotate(6,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(12,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(18,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(24,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(30,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(36,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(42,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(48,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(54,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(60,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(66,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(72,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(78,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(84,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(90,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(96,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(102,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(108,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(114,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(120,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(126,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(132,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(138,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(144,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(150,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(156,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(162,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(168,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(174,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(180,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(186,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(192,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(198,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(204,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(210,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(216,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(222,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(228,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(234,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(240,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(246,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(252,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(258,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(264,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(270,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(276,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(282,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(288,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(294,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(300,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(306,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(312,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(318,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(324,64,64)" />
+      <polyline points="64 4,64 8" transform="rotate(330,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(336,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(342,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(348,64,64)" />
+      <polyline points="64 4,64 6" transform="rotate(354,64,64)" />
+    </g>
+    <g fill="hsl(var(--hue),90%,10%)" stroke="hsl(var(--hue),90%,10%)" stroke-linecap="round" stroke-width="4">
+      <polyline class="clock__hand clock__hand--h" points="64 64,64 32" />
+      <polyline class="clock__hand clock__hand--m" points="64 64,64 16" />
+      <polyline class="clock__hand clock__hand--s" points="64 64,64 14" />
+      <circle class="clock__hand-hub" r="4" cx="64" cy="64" stroke-width="0" />
+    </g>
+  </svg>
+
+</body>
+  <script>
+    window.addEventListener("DOMContentLoaded",()=>{const c=new Clock29(".clock")});class Clock29{circumference=201.06;constructor(el){this.el=document.querySelector(el);this.init()}init(){this.timeUpdate()}get timeAsObject(){const date=new Date();const h=date.getHours();const m=date.getMinutes();const s=date.getSeconds();return{h,m,s}}get timeAsString(){const[ht,ho,mt,mo,st,so,ap]=this.timeDigits;const time=`${ht}${ho}:${mt}${mo}:${st}${so}${ap}`;return`${time}`.trim()}get timeDigits(){let{h,m,s}=this.timeAsObject;const ap=h>11?"PM":"AM";if(h>12)h-=12;let hh=`${h}`.split("");if(h<10)hh.unshift(" ");let mm=`${m}`.split("");if(m<10)mm.unshift("0");let ss=`${s}`.split("");if(s<10)ss.unshift("0");return[...hh,...mm,...ss,ap]}animateSecondHand(){const time=this.timeAsObject;const{circumference}=this;const minFraction=time.s/60;const angleB=Utils.decPlaces(360*minFraction,3);const angleA=angleB-6;let offsetB=Utils.decPlaces(circumference-circumference*minFraction,3);if(time.s===0)offsetB=0;const offsetA=offsetB+circumference/60;const duration=300;const easing="cubic-bezier(0.65,0,0.35,1)";const fill="both";const handEl=".clock__hand--s";const sliceEl=".clock__slice--s";this.el?.querySelector(handEl)?.animate([{transform:`rotate(${angleA}deg)`},{transform:`rotate(${angleB}deg)`}],{duration,easing});this.el?.querySelector(sliceEl)?.animate([{strokeDashoffset:offsetA},{strokeDashoffset:offsetB}],{duration,easing,fill})}timeUpdate(){this.el?.setAttribute("aria-label",this.timeAsString);const time=this.timeAsObject;const{circumference}=this;const minFraction=time.s/60;const hrFraction=(time.m+minFraction)/60;const twelveHrFraction=(time.h%12+hrFraction)/12;const angles=[{prop:"--secAngle",value:Utils.decPlaces(360*minFraction,3),unit:"deg"},{prop:"--minAngle",value:Utils.decPlaces(360*hrFraction,3),unit:"deg"},{prop:"--hrAngle",value:Utils.decPlaces(360*twelveHrFraction,3),unit:"deg"},{prop:"--secOffset",value:Utils.decPlaces(circumference-circumference*minFraction,3),unit:""},{prop:"--minOffset",value:Utils.decPlaces(circumference-circumference*hrFraction,3),unit:""},{prop:"--hrOffset",value:Utils.decPlaces(circumference-circumference*twelveHrFraction,3),unit:""}];for(let a of angles){this.el?.style.setProperty(a.prop,`${a.value}${a.unit}`)}this.animateSecondHand();clearTimeout(this.timeUpdateLoop);this.timeUpdateLoop=setTimeout(this.timeUpdate.bind(this),1e3)}}class Utils{static decPlaces(n,d){return Math.round(n*10**d)/10**d}}
+  </script>
+</html>

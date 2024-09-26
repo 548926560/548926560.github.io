@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROS Workspace Setup and Package Creation</title>
+    <style>
+        body {
+            font-family: 'Consolas', monospace;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        ol {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        ol li {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-left: 3px solid #007bff;
+            background-color: #e9ecef;
+            color: #333;
+            word-wrap: break-word;
+        }
+        code {
+            background-color: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ROS Workspace Setup and Package Creation Steps</h1>
+<h3>出现的小乌龟命令:</h3>
+<h3><code>roscore</code></h3>
+<h3><code>rosrun turtlesim turtlesim_node</code></h3>
+<h3><code>rosrun turtlesim turtle_teleop_key</code></h3>
+        <ol>
+            <li><code>echo $ROS_PACKAGE_PATH</code></li>
+            <li><code>mkdir -p ~/catkin_ws/src</code></li>
+            <li><code>chmod -R 777 ~/catkin_ws</code></li>
+            <li><code>chmod -R 777 ~/catkin_ws/src</code></li>
+            <li><code>catkin_init_workspace</code></li>
+            <li><code>cd ~/catkin_ws/</code></li>
+            <li><code>catkin_make</code></li>
+            <li><code>echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc</code></li>
+            <li><code>source ~/.bashrc</code></li>
+            <li><code>cd ~/catkin_ws/src</code></li>
+            <li><code>catkin_create_pkg test std_msgs rospy roscpp</code></li>
+            <li><code>cd ~/catkin_ws/</code></li>
+            <li><code>catkin_make</code></li>
+            <li><code>cd ~/catkin_ws/src</code></li>
+            <li><code>catkin_create_pkg turtle_vel_ctrl roscpp geometry_msgs</code></li>
+        </ol>
+    </div>
+<p>注意：当不够权限的时候在命令前添加sudo</p>
+<p>命令来源于书本26~37</p>
+<p>ROS安装步骤：<a href="https://blog.csdn.net/qq_46106285/article/details/120982412" target="_blank">https://blog.csdn.net/qq_46106285/article/details/120982412</a>。</p>
+
+</body>
+</html>

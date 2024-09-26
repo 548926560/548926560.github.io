@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROS的第一个Python程序命令</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', '微软雅黑', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .main-content {
+            flex: 3;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin-right: 20px;
+        }
+        .copy-history {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .copy-history h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .copy-history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .copy-history li {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        .command {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            position: relative;
+            border: 1px solid #e9ecef;
+        }
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #007bff;
+            color: black; /* 默认黑色文字 */
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+        .copy-btn.copied {
+            color: red; /* 复制后的红色文字 */
+        }
+        .command-text {
+            margin-right: 80px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+        .command-text.copied {
+            color: red; /* 复制后的红色文字 */
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        
+        @keyframes fallingStar {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .star {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: fallingStar 2s linear;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 5px;
+        }
+        .modal input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .modal button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .modal button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <h1>ROS的第一个Python程序命令</h1>
+            
+            <h2>步骤</h2>
+            <ol>
+                <li>
+                    <p>创建ROS工作空间</p>
+                    <div class="command">
+                        <pre class="command-text">mkdir -p ~/ros_one/src</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">cd ~/ros_one/src</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">catkin_init_workspace</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>编译工作空间</p>
+                    <div class="command">
+                        <pre class="command-text">cd ~/ros_one/</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">catkin_make</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>把工作空间添加到ros环境变量</p>
+                    <div class="command">
+                        <pre class="command-text">echo "source ~/ros_one/devel/setup.bash" >> ~/.bashrc</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">source ~/.bashrc</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>创建ros功能包</p>
+                    <div class="command">
+                        <pre class="command-text">cd ~/ros_one/src</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">catkin_create_pkg hello std_msgs rospy roscpp</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>编译ros功能包</p>
+                    <div class="command">
+                        <pre class="command-text">cd ~/ros_one</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">catkin_make</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>创建scripts文件夹</p>
+                    <div class="command">
+                        <pre class="command-text">cd src/hello</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">mkdir scripts</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>编译python(创建.py)</p>
+                    <div class="command">
+                        <pre class="command-text">#!/usr/bin/env python
+# -*- coding: iso-8859-15 -*-
+import rospy
+if __name__ == "__main__":
+    rospy.init_node("Hello")
+    rospy.loginfo("Hello World!!!")</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+                <li>
+                    <p>配置文件</p>
+                    <p>(此步骤修改162~166行)</p>
+                </li>
+                <li>
+                    <p>执行</p>
+                    <div class="command">
+                        <pre class="command-text">roscore</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                    <div class="command">
+                        <pre class="command-text">rosrun hello hello.py</pre>
+                        <button class="copy-btn">复制</button>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="copy-history">
+            <h2>复制记录</h2>
+            <ul id="copyHistoryList"></ul>
+        </div>
+    </div>
+
+    <div id="workspaceModal" class="modal">
+        <div class="modal-content">
+            <h2>请输入工作空间名称</h2>
+            <input type="text" id="workspaceName" placeholder="例如: ros_one">
+            <button onclick="nextStep()">下一步</button>
+        </div>
+    </div>
+
+    <div id="packageModal" class="modal">
+        <div class="modal-content">
+            <h2>请输入功能包名称</h2>
+            <input type="text" id="packageName" placeholder="例如: hello">
+            <button onclick="nextToPythonName()">下一步</button>
+        </div>
+    </div>
+
+    <div id="pythonNameModal" class="modal">
+        <div class="modal-content">
+            <h2>请输入Python文件名称</h2>
+            <input type="text" id="pythonName" placeholder="例如: hello.py">
+            <button onclick="finishSetup()">完成</button>
+        </div>
+    </div>
+
+    <script>
+        const copyHistoryList = document.getElementById('copyHistoryList');
+        const copyHistory = [];
+        const lastCopyBtn = document.querySelectorAll('.copy-btn')[document.querySelectorAll('.copy-btn').length - 1];
+
+        let workspaceName = 'ros_one';
+        let packageName = 'hello';
+        let pythonName = 'hello.py';
+
+        window.onload = function() {
+            document.getElementById('workspaceModal').style.display = 'block';
+        }
+
+        function nextStep() {
+            workspaceName = document.getElementById('workspaceName').value || 'ros_one';
+            document.getElementById('workspaceModal').style.display = 'none';
+            document.getElementById('packageModal').style.display = 'block';
+        }
+
+        function nextToPythonName() {
+            packageName = document.getElementById('packageName').value || 'hello';
+            document.getElementById('packageModal').style.display = 'none';
+            document.getElementById('pythonNameModal').style.display = 'block';
+        }
+
+        function finishSetup() {
+            pythonName = document.getElementById('pythonName').value || 'hello.py';
+            document.getElementById('pythonNameModal').style.display = 'none';
+            updateCommands();
+        }
+
+        function updateCommands() {
+            document.querySelectorAll('.command-text').forEach(command => {
+                let updatedText = command.textContent
+                    .replace(/ros_one/g, workspaceName)
+                    .replace(/(?<!\w)hello(?!\.py)(?!\w)/g, packageName)
+                    .replace(/hello\.py/g, pythonName);
+                command.textContent = updatedText;
+            });
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const commandElement = this.previousElementSibling;
+                const commandText = commandElement.textContent
+                    .replace(/ros_one/g, workspaceName)
+                    .replace(/(?<!\w)hello(?!\.py)(?!\w)/g, packageName)
+                    .replace(/hello\.py/g, pythonName);
+                navigator.clipboard.writeText(commandText.trim()).then(() => {
+                    commandElement.classList.add('copied');
+                    setTimeout(() => {
+                        commandElement.classList.remove('copied');
+                    }, 2000);
+
+                    // 添加到复制历史
+                    copyHistory.unshift(commandText.trim());
+                    if (copyHistory.length > 10) {
+                        copyHistory.pop();
+                    }
+                    updateCopyHistory();
+
+                    // 如果是最后一个按钮，创建掉落的星星
+                    if (this === lastCopyBtn) {
+                        createFallingStar();
+                    }
+                });
+            });
+        });
+
+        function updateCopyHistory() {
+            copyHistoryList.innerHTML = '';
+            copyHistory.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                copyHistoryList.appendChild(li);
+            });
+        }
+
+        function createFallingStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * window.innerWidth}px`;
+            document.body.appendChild(star);
+            setTimeout(() => {
+                document.body.removeChild(star);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
