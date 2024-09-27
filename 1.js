@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 模拟博客文章数据
     const posts = [
-        { title: '前端小项目展示', summary: '点进去看就是了' },
-        { title: 'ROS', summary: '只有命令，没有说明' },
-        { title: '单片机', summary: '暂无' }
+        { title: '前端小项目展示', summary: '请点进去看看效果', content: generateProjectButtons() },
+        { title: 'ROS', summary: '只有命令，没有解析', content: generateROSButtons() },
+        { title: '响应式设计最佳实践', summary: '分享一些响应式网页设计的技巧和最佳实践，让你的网站在各种设备上都能完美展示...' }
     ];
 
     // 动态加载最新文章
@@ -13,66 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
         article.innerHTML = `
             <h3>${post.title}</h3>
             <p>${post.summary}</p>
-            ${post.title === '前端小项目展示' ? `
-                <div class="button-group">
-                    <button id="light-control-btn">自由控制灯光</button>
-                    <button id="clock-btn">时钟</button>
-                    <button id="custom-checkbox-btn">自定义复选框</button>
-                    <button id="text-blink-btn">文字闪烁加载</button>
-                    <button id="digital-clock-btn">数字时钟</button>
-                    <button id="fireworks-btn">烟花大炮</button>
-                    <button id="catch-butterfly-btn">抓住这只蝴蝶</button>
-                    <button id="spooky-btn">让它变得阴森恐怖</button>
-                    <button id="love-confession-btn">七夕表白</button>
-                    <button id="switch-btn">开关按钮</button>
-                    <button id="heart-loading-btn">爱心跳动加载</button>
-                    <button id="responsive-sidebar-btn">响应式侧边栏菜单</button>
-                    <button id="panda-login-btn">熊猫登录表单</button>
-                    <button id="image-carousel-btn">图片轮播卡片</button>
-                    <button id="custom-dropdown-btn">自定义下拉菜单</button>
-                    <button id="3d-carousel-btn">3D旋转轮播图</button>
-                    <button id="progress-bar-btn">动态百分比进度条</button>
-                    <button id="vertical-carousel-btn">垂直轮播</button>
-                    <button id="apple-message-btn">苹果消息折叠效果</button>
-                    <button id="day-night-switch-btn">日月模式切换</button>
-                    <button id="dynamic-squid-btn">充满趣味的动态乌贼</button>
-                    <button id="scene-camera-btn">场景相机</button>
-                    <button id="lantern-lighting-btn">灯笼点灯</button>
-                    <button id="love-letter-btn">表白信封</button>
-                </div>
-            ` : ''}
-            ${post.title === 'ROS' ? `
-                <div class="button-group">
-                    <button id="ros-install-btn">ros安装</button>
-                    <button id="ros-command-btn">ros命令</button>
-                    <button id="ros-python-btn">ros的第一个python程序命令</button>
-                </div>
-            ` : ''}
+            ${post.content ? post.content : '<a href="#">阅读更多</a>'}
         `;
         postList.appendChild(article);
     });
-
-    // 加载1.md
-    fetch('1.md')
-        .then(response => response.text())
-        .then(data => {
-            console.log('python:', data); 
-            const mdContent = document.getElementById('md-content');
-            if (mdContent) {
-                const parsedContent = marked.parse(data);
-                console.log('解析后的内容:', parsedContent);
-                mdContent.innerHTML = parsedContent;
-            } else {
-                console.error('未找到id为md-content的元素');
-            }
-        })
-        .catch(error => {
-            console.error('加载1.md失败:', error);
-            const mdContent = document.getElementById('md-content');
-            if (mdContent) {
-                mdContent.innerHTML = '<p>加载内容失败，请稍后再试。</p>';
-            }
-        });
 
     // 添加简单的导航功能
     const navLinks = document.querySelectorAll('nav a');
@@ -245,133 +189,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 每隔10秒更新一次随机文案
     setInterval(updateQuote, 10000);
+});
 
-    // JavaScript代码用于控制灯光
-    document.getElementById('light-switch').addEventListener('change', function() {
-        if (this.checked) {
-            document.body.style.backgroundColor = 'white';
-        } else {
-            document.body.style.backgroundColor = 'black';
-        }
-    });
-
-    // 添加跳转到自由控制灯光页面的按钮点击事件
-    document.getElementById('light-control-btn').addEventListener('click', function() {
-        window.location.href = '自由控制灯光.html';
-    });
-
-    // 添加跳转到时钟页面的按钮点击事件
-    document.getElementById('clock-btn').addEventListener('click', function() {
-        window.location.href = '时钟.html';
-    });
-
-    // 添加跳转到自定义复选框页面的按钮点击事件
-    document.getElementById('custom-checkbox-btn').addEventListener('click', function() {
-        window.location.href = '自定义复选框.html';
-    });
-
-    // 添加跳转到文字闪烁加载页面的按钮点击事件
-    document.getElementById('text-blink-btn').addEventListener('click', function() {
-        window.location.href = '文字闪烁加载.html';
-    });
-
-    // 添加跳转到数字时钟页面的按钮点击事件
-    document.getElementById('digital-clock-btn').addEventListener('click', function() {
-        window.location.href = '数字时钟.html';
-    });
-
-    // 添加跳转到烟花大炮页面的按钮点击事件
-    document.getElementById('fireworks-btn').addEventListener('click', function() {
-        window.location.href = '烟花大炮.html';
-    });
-
-    // 添加跳转到抓住这只蝴蝶页面的按钮点击事件
-    document.getElementById('catch-butterfly-btn').addEventListener('click', function() {
-        window.location.href = '抓住这只蝴蝶.html';
-    });
-
-    // 添加跳转到让它变得阴森恐怖页面的按钮点击事件
-    document.getElementById('spooky-btn').addEventListener('click', function() {
-        window.location.href = '让它变得阴森恐怖.html';
-    });
-
-    // 添加跳转到七夕表白按钮页面的按钮点击事件
-    document.getElementById('love-confession-btn').addEventListener('click', function() {
-        window.location.href = '七夕表白按钮.html';
-    });
-
-    // 添加跳转到ros安装页面的按钮点击事件
-    document.getElementById('ros-install-btn').addEventListener('click', function() {
-        window.location.href = 'ros安装.html';
-    });
-
-    // 添加跳转到ros命令页面的按钮点击事件
-    document.getElementById('ros-command-btn').addEventListener('click', function() {
-        window.location.href = 'ros命令.html';
-    });
-
-    // 添加跳转到ros的第一个python程序命令页面的按钮点击事件
-    document.getElementById('ros-python-btn').addEventListener('click', function() {
-        window.location.href = 'ros的第一个python程序命令.html';
-    });
-
-    // 添加新的按钮点击事件
-    const newButtons = [
-        { id: 'switch-btn', url: '开关按钮.html' },
-        { id: 'heart-loading-btn', url: '爱心跳动加载.html' },
-        { id: 'responsive-sidebar-btn', url: '响应式侧边栏菜单.html' },
-        { id: 'panda-login-btn', url: '熊猫登录表单.html' },
-        { id: 'image-carousel-btn', url: '图片轮播卡片.html' },
-        { id: 'custom-dropdown-btn', url: '自定义下拉菜单.html' },
-        { id: '3d-carousel-btn', url: '3D旋转轮播图.html' },
-        { id: 'progress-bar-btn', url: '动态百分比进度条.html' },
-        { id: 'vertical-carousel-btn', url: '垂直轮播.html' },
-        { id: 'apple-message-btn', url: '苹果消息折叠效果.html' },
-        { id: 'day-night-switch-btn', url: '日月模式切换.html' },
-        { id: 'dynamic-squid-btn', url: '充满趣味的动态乌贼.html' },
-        { id: 'scene-camera-btn', url: '场景相机.html' },
-        { id: 'lantern-lighting-btn', url: '灯笼点灯.html' },
-        { id: 'love-letter-btn', url: '表白信封.html' },
-
+// 生成项目按钮的函数
+function generateProjectButtons() {
+    const projects = [
+        '自由控制灯光', '时钟', '自定义复选框', '文字闪烁加载', '数字时钟',
+        '烟花大炮', '抓住这只蝴蝶', '让它变得阴森恐怖', '七夕表白', '开关按钮',
+        '爱心跳动加载', '响应式侧边栏菜单', '熊猫登录表单', '图片轮播卡片',
+        '自定义下拉菜单', '3D旋转轮播图', '动态百分比进度条', '垂直轮播',
+        '苹果消息折叠效果', '日月模式切换', '充满趣味的动态乌贼', '场景相机',
+        '灯笼点灯', '表白信封'
     ];
 
-    newButtons.forEach(button => {
-        document.getElementById(button.id).addEventListener('click', function() {
-            window.location.href = button.url;
-        });
-    });
+    return projects.map(project => {
+        const fileName = project === '3D旋转轮播图' ? '3D旋转轮播图' : project;
+        return `<button onclick="window.open('${fileName}.html', '_blank')" class="project-btn">${project}</button>`;
+    }).join('');
+}
 
-    // 更新网站资讯
-    function updateSiteInfo() {
-        // 文章数目（这里假设文章数量等于 posts 数组的长度）
-        document.getElementById('article-count').textContent = posts.length;
+// 修改生成ROS项目按钮的函数
+function generateROSButtons() {
+    const rosProjects = [
+        'ros安装', 'ros命令', 'ros的第一个python程序命令', 'ros的第二个python程序命令'
+    ];
 
-        // 已运行时间（假设网站创建日期为 2024 年 9 月 24 日）
-        const startDate = new Date('2024-09-24');
-        const now = new Date();
-        const runDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-        document.getElementById('run-time').textContent = runDays + ' 天';
-
-        // 获取访客数和访问量
-        fetch('/api/site-stats')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('visitor-count').textContent = data.visitorCount;
-                document.getElementById('visit-count').textContent = data.visitCount;
-            })
-            .catch(error => {
-                console.error('获取网站统计数据失败:', error);
-                document.getElementById('visitor-count').textContent = '获取失败';
-                document.getElementById('visit-count').textContent = '获取失败';
-            });
-
-        // 最后更新时间（固定时间）
-        document.getElementById('last-update').textContent = '2024年9月27日';
-    }
-
-    // 在页面加载完成后调用更新函数
-    updateSiteInfo();
-
-    // 每分钟更新一次网站资讯（除了最后更新时间）
-    setInterval(updateSiteInfo, 60000);
-});
+    return rosProjects.map(project => {
+        return `<button onclick="window.open('${project}.html', '_blank')" class="project-btn">${project}</button>`;
+    }).join('');
+}

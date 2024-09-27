@@ -6,12 +6,20 @@
     <title>我的博客网站</title>
     <link rel="stylesheet" href="1.css">
     <link rel="stylesheet" href="yy.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
     <style>
-        .button-group button {
-            margin-right: 10px; /* 调整按钮之间的间距 */
-            margin-bottom: 10px; /* 调整按钮之间的垂直间距 */
+        .project-btn {
+            margin: 5px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .project-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -55,14 +63,6 @@
             <div id="post-list">
                 <!-- 文章列表将通过JavaScript动态加载 -->
             </div>
-            
-            <!-- 新添加的文章 -->
-            <article>
-                <h3>1.md的内容</h3>
-                <div id="md-content">
-                    <!-- 1.md的内容将在这里通过JavaScript动态加载 -->
-                </div>
-            </article>
         </section>
     </main>
 
@@ -81,21 +81,10 @@
             </ul>
         </section>
         <div class="divider"></div>
-        <!-- 新添加的网站资讯部分 -->
-        <section id="site-info">
-            <h2>网站资讯</h2>
-            <ul>
-                <li>文章数目：<span id="article-count">0</span></li>
-                <li>已运行时间：<span id="run-time">0 天</span></li>
-                <li>本站访客数：<span id="visitor-count">0</span></li>
-                <li>本站总访问量：<span id="visit-count">0</span></li>
-                <li>最后更新时间：<span id="last-update">未知</span></li>
-            </ul>
-        </section>
     </aside>
 
     <footer>
-        <p>&copy; 2024 我的博客. 保留所有权利。</p>
+        <p>&copy; 2023 我的博客. 保留所有权利。</p>
     </footer>
 
     <script src="1.js"></script>
@@ -136,36 +125,5 @@
             </div>
         </div>
     </div>
-
-    <!-- 在body标签末尾添加以下代码 -->
-    <div id="light-control" class="modal">
-        <div class="modal-content">
-            <h2>自由控制灯光</h2>
-            <label class="switch">
-                <input type="checkbox" id="light-switch">
-                <span class="slider round"></span>
-            </label>
-            <button id="toggle-light-btn">切换灯光</button>
-        </div>
-    </div>
-
-    <script>
-        // JavaScript代码用于控制灯光
-        document.getElementById('light-switch').addEventListener('change', function() {
-            if (this.checked) {
-                document.body.style.backgroundColor = 'white';
-            } else {
-                document.body.style.backgroundColor = 'black';
-            }
-        });
-
-        // 添加按钮点击事件
-        document.getElementById('toggle-light-btn').addEventListener('click', function() {
-            const lightSwitch = document.getElementById('light-switch');
-            lightSwitch.checked = !lightSwitch.checked;
-            const event = new Event('change');
-            lightSwitch.dispatchEvent(event);
-        });
-    </script>
 </body>
 </html>
