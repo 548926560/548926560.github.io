@@ -125,5 +125,21 @@
             </div>
         </div>
     </div>
+
+    <!-- 修改公告模态窗口 -->
+    <div id="announcement-modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px;">
+            <h2>公告</h2>
+            <p>本站更新到27号后暂不更新，已迁移到新的地址了，地址为lgqlht.github.io</p>
+            <button onclick="window.open('https://lgqlht.github.io', '_blank')" style="float: left; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">新站</button>
+            <button onclick="closeAnnouncementModal()" style="float: right; padding: 10px 20px; background-color: #f44336; color: white; border: none; cursor: pointer;">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('close-announcement-btn').addEventListener('click', function() {
+            document.getElementById('announcement-modal').style.display = 'none';
+        });
+    </script>
 </body>
 </html>

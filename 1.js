@@ -1,9 +1,17 @@
+function showAnnouncementModal() {
+    document.getElementById('announcement-modal').style.display = 'block';
+}
+
+function closeAnnouncementModal() {
+    document.getElementById('announcement-modal').style.display = 'none';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // 模拟博客文章数据
     const posts = [
         { title: '前端小项目展示', summary: '请点进去看看效果', content: generateProjectButtons() },
         { title: 'ROS', summary: '只有命令，没有解析', content: generateROSButtons() },
-        { title: '响应式设计最佳实践', summary: '分享一些响应式网页设计的技巧和最佳实践，让你的网站在各种设备上都能完美展示...' }
+        { title: '停止更新', summary: '已迁移到https：//lgqlht.github.io' }
     ];
 
     // 动态加载最新文章
@@ -76,13 +84,27 @@ document.addEventListener('DOMContentLoaded', function() {
             textIndex++;
             setTimeout(typeHappyText, 150); // 稍微加快打字速度
         } else {
-            // 文字打完后，立即隐藏笑脸
+            // 文字打完后，立即隐藏笑脸，然后显示公告
             smileyOverlay.classList.add('hide');
+            setTimeout(() => {
+                smileyOverlay.style.display = 'none';
+                showAnnouncementModal();
+            }, 500); // 等待500毫秒（笑脸淡出的时间）后显示公告
         }
     }
 
     // 开始打字效果
     typeHappyText();
+
+    // 显示公告模态窗口
+    function showAnnouncementModal() {
+        document.getElementById('announcement-modal').style.display = 'block';
+    }
+
+    // 关闭公告模态窗口
+    function closeAnnouncementModal() {
+        document.getElementById('announcement-modal').style.display = 'none';
+    }
 
     // 添加关于模态窗口功能
     const aboutLink = document.querySelector('nav a[href="#about"]');
