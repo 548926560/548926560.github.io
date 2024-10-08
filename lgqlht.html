@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的博客网站</title>
+    <link rel="stylesheet" href="1.css">
+    <link rel="stylesheet" href="yy.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <style>
+        .project-btn {
+            margin: 5px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .project-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="smiley-overlay">
+        <div class="smiley-container">
+            <div class="smiley">
+                <div class="face">
+                    <div class="eyes">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <p class="smiley-text"></p>
+        </div>
+    </div>
+    <header>
+        <div class="light-effect"></div>
+        <h1>My blog</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#articles">文章</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+                <li><a href="#donate">赞赏</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="interesting-frontend">
+            
+            <!-- 将随机文案部分移动到文章的前面 -->
+            <div id="quote-box">
+                <p id="random-quote"></p>
+            </div>
+            <h2>文章</h2>
+            <div id="post-list">
+                <!-- 文章列表将通过JavaScript动态加载 -->
+            </div>
+        </section>
+    </main>
+
+    <aside>
+        <section id="about-me">
+            <h2>关于我</h2>
+            <p id="about-text"></p>
+        </section>
+        <div class="divider"></div>
+        <section id="categories">
+            <h2>分类</h2>
+            <ul>
+                <li><a href="#">技术</a></li>
+                <li><a href="#">生活</a></li>
+                <li><a href="#">旅行</a></li>
+            </ul>
+        </section>
+        <div class="divider"></div>
+    </aside>
+
+    <footer>
+        <p>&copy; 2023 我的博客. 保留所有权利。</p>
+    </footer>
+
+    <script src="1.js"></script>
+    <script src="yy.js"></script>
+
+    <!-- 模态窗口代码保持不变 -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <h2>公示</h2>
+            <p>本网站1.0代码免费开源，需要的联系我</p>
+            <div class="modal-buttons">
+                <button id="contact-btn">联系</button>
+                <button id="donate-btn-modal">赞赏</button>
+                <button id="close-modal-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在body标签末尾添加以下代码 -->
+    <div id="donate-modal" class="modal donate-modal">
+        <div class="modal-content">
+            <h2>赞赏作者</h2>
+            <p>如果您喜欢我的内容，可以考虑给予一些支持。</p>
+            <img src="zs.jpg" alt="赞赏二维码" style="max-width: 200px; margin: 20px auto; display: block;">
+            <div class="modal-buttons">
+                <button id="close-donate-modal-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在body标签末尾添加以下代码 -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content contact-modal-content">
+            <img src="tj.jpg" alt="联系照片" class="contact-image">
+            <div class="modal-buttons contact-modal-buttons">
+                <button id="more-contact-btn">更多联系</button>
+                <button id="close-contact-modal-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改公告模态窗口 -->
+    <div id="announcement-modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px;">
+            <h2>公告</h2>
+            <p>本站更新到27号后暂不更新，已迁移到新的地址了，地址为lgqlht.github.io</p>
+            <button onclick="window.open('https://lgqlht.github.io', '_blank')" style="float: left; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">新站</button>
+            <button onclick="closeAnnouncementModal()" style="float: right; padding: 10px 20px; background-color: #f44336; color: white; border: none; cursor: pointer;">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('close-announcement-btn').addEventListener('click', function() {
+            document.getElementById('announcement-modal').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
